@@ -1,2 +1,2 @@
-# WebDev1
-This is our first year project..!
+# django-todo-app
+A Smple Todo App developed by Django Framework
