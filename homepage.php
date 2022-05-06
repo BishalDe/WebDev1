@@ -103,7 +103,11 @@ require 'partials/_nav.php';
                         <td>' . $row['title'] . '</td>
                         <td>' . $row['postdate'] . '</td>
                         <td>' . $row['filename'] . '</td>
-                        <td><button class="edit btn btn-sm btn-primary">Edit</button> <a href="/delete">Delete</a></td>
+                        <td>
+                        <a href="uploadedfiles/'.$row['filename'].'" download>
+                          Download
+                        </a>
+                        </td>
                   </tr>';
             $sno += 1;
           }
