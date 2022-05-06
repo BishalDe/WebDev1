@@ -61,7 +61,7 @@ require 'partials/_nav.php';
       <div class="form-group">
         <label for="exampleInputEmail1">Title</label>
         <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title" name="title">
-        <small id="emailHelp" class="form-text text-muted">Title For Your Files..!</small>
+        <small id="emailHelp" class="form-text text-muted">Title For Your Files-..!</small>
       </div>
       <div class="mb-3">
   <label for="formFileMultiple" class="form-label">Multiple files input example</label>
