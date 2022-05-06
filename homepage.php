@@ -10,14 +10,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin']!=true){
 require 'partials/_database.php';
 $tablename=$_SESSION['username'];
 /*$sql = 'CREATE TABLE IF NOT EXISTS data (sno int(200) auto_increment primary key,title varchar(100) NOT NULL, description varchar(255) NOT NULL,postdate DATETIME)';*/
-$sql = "CREATE TABLE IF NOT EXISTS $tablename (sno int(200) auto_increment primary key,title varchar(100) NOT NULL, description varchar(255) NOT NULL,postdate DATETIME)";
+$sql = "CREATE TABLE IF NOT EXISTS $tablename (sno int(200) auto_increment primary key,title varchar(100) NOT NULL, filename varchar(255) NOT NULL,postdate DATETIME)";
 $result = mysqli_query($conn, $sql);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $name = $_SESSION['username'];
   $title = $_POST['title'];
-  if(!($title == '' || $description == '')){
-  $sql = "INSERT INTO $name (title,description,postdate) VALUES ('$title','$description',CURRENT_TIMESTAMP());";
+  $file_name=$_FILES['filess']['name'];
+  $file_size=$_FILES['filess']['size']; 
+  $file_tmp=$_FILES['filess']['tmp_name']; 
+  $file_type=$_FILES['filess']['type']; 
+  move_uploaded_file($file_tmp,"uploadedfiles/". $file_name);
+
+  if(!($title == '')){
+  $sql = "INSERT INTO $name (title,filename,postdate) VALUES ('$title','$file_name',CURRENT_TIMESTAMP());";
   $result = mysqli_query($conn, $sql);
   if ($result) {
     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -57,7 +63,7 @@ require 'partials/_nav.php';
 ?>
   <div class="container my-5">
     <h1>Welcome <strong><?php echo $_SESSION['username']; ?></strong>..!</h1>  <h3>Add Files Here..!</h3>
-    <form action='homepage.php' method='post'> 
+    <form action='homepage.php' method='post' enctype="multipart/form-data"> 
       <div class="form-group">
         <label for="exampleInputEmail1">Title</label>
         <input type="text" class="form-control" id="title" aria-describedby="emailHelp" placeholder="Enter Title" name="title">
@@ -65,7 +71,7 @@ require 'partials/_nav.php';
       </div>
       <div class="mb-3">
   <label for="formFileMultiple" class="form-label">Multiple files input example</label>
-  <input class="form-control" type="file" id="formFileMultiple" multiple>
+  <input class="form-control" type="file" id="formFileMultiple" name="filess">
 </div>
       <button type="submit" class="btn btn-primary my-4">Add File</button>
       <button type="reset" class="btn btn-dark my-4">Reset</button>
@@ -78,6 +84,7 @@ require 'partials/_nav.php';
           <th scope="col">S.No</th>
           <th scope="col">Title</th>
           <th scope="col">Post Date</th>
+          <th scope="col">File Name</th>
           <th scope="col">Files</th>
         </tr>
       </thead>
@@ -95,6 +102,7 @@ require 'partials/_nav.php';
                         <th scope="row">' . $sno . '</th>
                         <td>' . $row['title'] . '</td>
                         <td>' . $row['postdate'] . '</td>
+                        <td>' . $row['filename'] . '</td>
                         <td><button class="edit btn btn-sm btn-primary">Edit</button> <a href="/delete">Delete</a></td>
                   </tr>';
             $sno += 1;
