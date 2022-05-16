@@ -1,9 +1,11 @@
 <?php
-/*$servername = 'db4free.net';
+/*
+$servername = 'db4free.net';
 $usernames = 'bishalde';
 $password = 'bishal@5741';
-$database = 'clustix';*/
+$database = 'clustix';
 
+*/
 $servername = 'localhost';
 $usernames = 'bishal';
 $password = 'bishal';
