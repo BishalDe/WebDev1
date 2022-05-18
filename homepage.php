@@ -70,7 +70,7 @@ require 'partials/_nav.php';
         <small id="emailHelp" class="form-text text-muted">Title For Your Files-..!</small>
       </div>
       <div class="mb-3">
-  <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+  <label for="formFileMultiple" class="form-label"><b>Only one file at a time..</b></label>
   <input class="form-control" type="file" id="formFileMultiple" name="filess">
 </div>
       <button type="submit" class="btn btn-primary my-4">Add File</button>
@@ -86,6 +86,7 @@ require 'partials/_nav.php';
           <th scope="col">Post Date</th>
           <th scope="col">File Name</th>
           <th scope="col">Files</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -106,6 +107,11 @@ require 'partials/_nav.php';
                         <td>
                         <a href="uploadedfiles/'.$row['filename'].'" download>
                           Download
+                        </a>
+                        </td>
+                        <td>
+                        <a href="uploadedfiles/'.$row['filename'].'"  target="_blank" >
+                          Print
                         </a>
                         </td>
                   </tr>';
