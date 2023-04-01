@@ -7,18 +7,18 @@ $database = 'epiz_31737233_UpFastApp';
 */
 
 
-$servername = 'localhost';
-$usernames = 'bishal';
-$password = 'bishal';
-$database = 'UpFastApp';
+// $servername = 'localhost';
+// $usernames = 'bishal';
+// $password = 'bishal';
+// $database = 'UpFastApp';
 
 
-/*
+
 $servername = 'db4free.net';
 $usernames = 'bishalde';
-$password = 'bishal@5741';
+$password = '8299260163';
 $database = 'clustix';
-*/
+
 
 
 $conn = mysqli_connect($servername, $usernames, $password, $database);
